@@ -519,56 +519,211 @@
   
   /* 响应式设计 */
   @media (max-width: 768px) {
+    .page-wrapper {
+      min-height: 100vh;
+    }
+
     .page-container {
-      padding: 2rem 1rem;
+      padding: 0;
     }
   
     .content-container {
-      padding-top: 4rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
+      max-width: 100%;
+      padding: 1rem;
+      padding-top: 5rem;
     }
   
+    .hero-section {
+      margin-bottom: 1.5rem;
+    }
+
     .hero-title {
-      font-size: 2.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.3;
     }
   
     .hero-subtitle {
-      font-size: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      padding: 0 0.5rem;
+    }
+  
+    .search-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .search-section.sticky {
+      position: sticky;
+      top: 80px;
+      padding: 0;
+      margin: 0;
+      margin-top: 0.625rem;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      z-index: 40;
     }
   
     .search-box {
-      flex-direction: column;
+      flex-direction: row;
       gap: 0.5rem;
+      padding: 0.25rem;
+      border-radius: 10px;
+    }
+  
+    .search-input {
+      font-size: 1rem;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .clear-button {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .clear-button svg {
+      width: 16px;
+      height: 16px;
     }
   
     .search-button {
-      width: 100%;
-    }
-  
-    .search-section.sticky {
-      top: 70px;
-      padding: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.9375rem;
+      white-space: nowrap;
+      min-width: 60px;
     }
   
     .search-history {
-      margin-top: 1rem;
-      padding-top: 1rem;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
     }
   
     .history-tags {
       gap: 0.5rem;
       row-gap: 0.5rem;
+      max-height: 120px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
   
     .history-tag {
       padding: 0.375rem 0.625rem;
       font-size: 0.75rem;
+      min-height: 32px;
+      touch-action: manipulation;
     }
   
     .tag-icon {
       width: 12px;
       height: 12px;
+    }
+
+    .error-message {
+      margin: 0 0 1.5rem;
+      padding: 0.875rem;
+      border-radius: 8px;
+    }
+
+    .error-content {
+      font-size: 0.875rem;
+      gap: 0.5rem;
+    }
+
+    .error-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  /* 小屏幕优化 */
+  @media (max-width: 480px) {
+    .content-container {
+      padding: 0.75rem;
+      padding-top: 4rem;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.8125rem;
+    }
+
+    .search-section.sticky {
+      top: 80px;
+      padding: 0;
+      margin: 0;
+      margin-top: 0.5rem;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      box-shadow: none;
+      z-index: 40;
+    }
+
+    .search-box {
+      padding: 0.2rem;
+      gap: 0.375rem;
+    }
+
+    .search-input {
+      font-size: 0.9375rem;
+      padding: 0.5rem;
+    }
+
+    .search-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      min-width: 55px;
+    }
+
+    .history-tag {
+      padding: 0.3125rem 0.5rem;
+      font-size: 0.6875rem;
+    }
+
+    .tag-icon {
+      width: 11px;
+      height: 11px;
+    }
+  }
+
+  /* 横屏优化 */
+  @media (max-width: 768px) and (orientation: landscape) {
+    .content-container {
+      padding-top: 3rem;
+    }
+
+    .hero-section {
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.8125rem;
+    }
+
+    .search-section.sticky {
+      top: 80px;
+      padding: 0;
+      margin: 0;
+      margin-top: 0.5rem;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      box-shadow: none;
+      z-index: 40;
     }
   }
   </style>

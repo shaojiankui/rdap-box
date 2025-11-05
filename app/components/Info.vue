@@ -338,11 +338,11 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.625rem 0.75rem;
     border-radius: 8px;
     transition: all 0.2s ease;
     user-select: none;
-    margin-bottom: 1rem;
+    margin-bottom: 0.875rem;
 }
 
 .section-header.collapsed {
@@ -355,11 +355,11 @@ onMounted(() => {
 
 .section-title {
     color: #fff;
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 600;
     text-align: center;
     margin: 0;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
 }
 
 .section-content {
@@ -693,34 +693,147 @@ onMounted(() => {
 /* 响应式设计 */
 @media (max-width: 768px) {
     .info-container {
-        padding: 0.75rem 0;
+        padding: 0.5rem 0;
     }
 
     .info-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.625rem;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .info-title {
+        font-size: 1.25rem;
     }
 
     .info-section {
-        padding: 0.875rem;
+        padding: 0.625rem;
+        border-radius: 8px;
     }
 
     .info-sections {
-        gap: 0.625rem;
-    }
-
-    .section-title {
-        margin-bottom: 0.875rem;
-    }
-
-    .section-content {
         gap: 0.5rem;
     }
 
-    .entity-details {
-        padding-left: 1rem;
+    .section-header {
+        padding: 0.375rem;
+        margin-bottom: 0.625rem;
+    }
+
+    .section-title {
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+
+    .section-content {
         gap: 0.375rem;
+    }
+
+    .info-item {
+        padding: 0.1875rem 0;
+        gap: 0.5rem;
+    }
+
+    .info-label {
+        font-size: 0.8125rem;
+    }
+
+    .info-value {
+        font-size: 0.8125rem;
+    }
+
+    .status-tags {
+        gap: 0.375rem;
+    }
+
+    .status-tag,
+    .role-tag {
+        padding: 0.25rem 0.625rem;
+        font-size: 0.6875rem;
+    }
+
+    .url-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8125rem;
+    }
+
+    .entity-item {
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .entity-header {
+        padding: 0.375rem 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .entity-handle {
+        font-size: 0.8125rem;
+    }
+
+    .entity-details {
+        padding-left: 0.75rem;
+        padding-right: 0.375rem;
+        gap: 0.375rem;
+        margin-top: 0.375rem;
+    }
+
+    .entity-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .nameserver-item {
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .nameserver-header {
+        padding: 0.375rem 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .nameserver-handle {
+        font-size: 0.8125rem;
+    }
+
+    .nameserver-details {
+        padding-left: 0.75rem;
+        padding-right: 0.375rem;
+        gap: 0.375rem;
+        margin-top: 0.375rem;
+    }
+
+    .nameserver-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .notice-item {
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .notice-header {
+        padding: 0.375rem 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .notice-title {
+        font-size: 0.8125rem;
+    }
+
+    .notice-details {
+        padding-left: 0.75rem;
+        padding-right: 0.375rem;
+        gap: 0.375rem;
+        margin-top: 0.375rem;
+    }
+
+    .notice-icon {
+        width: 16px;
+        height: 16px;
     }
 }
 </style>
