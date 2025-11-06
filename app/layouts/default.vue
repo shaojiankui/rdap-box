@@ -20,16 +20,46 @@
   padding: 0;
 }
 
-html,
-body {
-  height: 100%;
+html {
+  scrollbar-gutter: stable; /* 预留滚动条空间，避免内容变化时布局闪烁 */
+}
+
+/* 暗黑主题滚动条样式 - 应用到 html 和 body */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: #030617 !important;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px !important;
+  border: 2px solid #030617 !important;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Firefox 滚动条样式 */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) #030617;
 }
 
 body {
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
   color: var(--text-color);
-  background-color: var(--body-bg);
+  background-color: #030617; /* 确保与滚动条轨道颜色一致 */
   transition: background-color 0.3s, color 0.3s;
 }
 

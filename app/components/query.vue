@@ -89,12 +89,14 @@
             </div>
           </div>
   
-          <Info
-            v-if="result"
-            :key="result.handle || result.ldhName || domain"
-            :data="result"
-            :source="result.remarks?.some((r: any) => r.title === 'Data Source' && r.description?.includes('WHOIS')) ? 'whois' : 'rdap'"
-          />
+          <Transition name="fade">
+            <Info
+              v-if="result"
+              :key="result.handle || result.ldhName || domain"
+              :data="result"
+              :source="result.remarks?.some((r: any) => r.title === 'Data Source' && r.description?.includes('WHOIS')) ? 'whois' : 'rdap'"
+            />
+          </Transition>
         </div>
       </div>
     </div>
@@ -109,6 +111,7 @@
   const result = ref<any>(null)
   const searchHistory = ref<string[]>([])
   const MAX_HISTORY = 20
+  const currentQueryDomain = ref('') // 当前正在查询的域名
 
   // 从路由参数获取域名并解码
   const getDomainFromRoute = () => {
@@ -212,17 +215,17 @@
   
     try {
       const response = await $fetch(`/domain/${domainToQuery}`)
-      console.log('API Response:', response)
       result.value = response
   
       // 保存查询记录（只有成功时才保存）
       if (response && response.objectClassName) {
         saveHistory(domainToQuery)
-        console.log('Current history after save:', searchHistory.value)
         // 更新 URL（如果域名改变）
         const routeDomain = getDomainFromRoute()
         if (domainToQuery !== routeDomain) {
-          navigateTo(`/${encodeURIComponent(domainToQuery)}`)
+          // 设置当前查询域名，防止 watch 触发重复请求
+          currentQueryDomain.value = domainToQuery
+          await navigateTo(`/${encodeURIComponent(domainToQuery)}`, { replace: true })
         }
         // 滚动到结果区域
         setTimeout(() => {
@@ -230,6 +233,7 @@
         }, 100)
       } else {
         console.warn('Query succeeded but no result data, not saving to history')
+        result.value = null
       }
     } catch (e: any) {
       console.error('Query error:', e)
@@ -264,13 +268,25 @@
 
   // 监听路由变化，如果域名参数改变则自动查询
   watch(() => route.params.domain, (newDomain) => {
-    if (newDomain) {
-      const decodedDomain = decodeURIComponent(newDomain as string)
-      if (decodedDomain !== domain.value) {
-        domain.value = decodedDomain
-        handleSearch()
-      }
+    if (!newDomain) {
+      return
     }
+    
+    const decodedDomain = decodeURIComponent(newDomain as string).trim()
+    
+    // 如果路由中的域名和当前查询的域名相同，跳过（这是 handleSearch 更新 URL 导致的）
+    if (decodedDomain.toLowerCase() === currentQueryDomain.value.toLowerCase()) {
+      return
+    }
+    
+    // 如果正在查询中，跳过
+    if (loading.value) {
+      return
+    }
+    
+    // 路由变化了，且不是当前查询的域名，执行查询
+    domain.value = decodedDomain
+    handleSearch()
   })
   </script>
   
@@ -693,6 +709,17 @@
       width: 11px;
       height: 11px;
     }
+  }
+
+  /* 过渡动画 */
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.2s ease;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
   }
 
   /* 横屏优化 */
